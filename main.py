@@ -4,6 +4,11 @@ from database_manager import DatabaseManager
 import os
 import time
 import logging
+import json
+
+def load_routes(file_path):
+    with open(file_path, "r") as file:
+        return json.load(file)
 
 def main():
     load_dotenv(override=True)
@@ -11,11 +16,9 @@ def main():
     database_manager = DatabaseManager(dsn)
     
     base_url = "http://openapi.gbis.go.kr/ws/rest/buslocationservice?serviceKey=1234567890&routeId={}"
-    route_id = "219000013"
-    route_name = "1000"
     resource_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources")
 
-    data_collector = DataCollector(base_url, route_id, route_name, resource_path)
+    data_collector = DataCollector(base_url, resource_path)
 
     while True:
         buses = data_collector.collect_data()
