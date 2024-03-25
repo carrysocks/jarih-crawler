@@ -6,7 +6,7 @@ import time
 import logging
 
 def main():
-    load_dotenv()
+    load_dotenv(override=True)
     dsn = os.getenv('DB_URL')
     database_manager = DatabaseManager(dsn)
     
