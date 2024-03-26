@@ -28,7 +28,6 @@ class DataCollector:
 
             xml_element = ET.fromstring(xml_str)
             json_data = xmljson.parker.data(xml_element)
-            print(json_data)
             
             # Check Data from external API
             
@@ -44,14 +43,14 @@ class DataCollector:
             
             if len(json_data) == 1 or json_data["msgHeader"]["resultCode"] != 0:
                 logging.warning(f"Request ignored or result is unexpected: {json_data}")
-                return []
+                continue
 
             for data in json_data["msgBody"]["busLocationList"]:
                 time = datetime.datetime.now(pytz.utc).astimezone(self.kst_zone).strftime("%Y-%m-%d %H:%M:%S")
                 plate_no = data.get("plateNo")
                 plate_type = data.get("plateType")
                 remain_seat_cnt = data.get("remainSeatCnt", -1)
-                station_id = data.get("stationId")
+                station_id = str(data.get("stationId"))
                 station_name = self.station_map.get(str(station_id), "Unknown Station")
                 station_seq = data.get("stationSeq")
 
