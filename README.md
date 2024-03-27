@@ -65,7 +65,7 @@ python initialize_database.py
 크롤러를 시작하여 데이터 수집 및 저장을 시작합니다:
 
 ```bash
-python main.py
+python async_main.py
 ```
 
 ## 데이터 분석
