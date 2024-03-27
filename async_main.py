@@ -39,7 +39,7 @@ async def main():
             print(f"비동기 수집 시간 : {elapsed_collect_time}초, 비동기 저장 시간 : {elapsed_save_time}초, 비동기 총 시간 : {elapsed_collect_time + elapsed_save_time}초")
             
             print("Sleeping...")
-            await time.sleep(60)
+            await asyncio.sleep(60)
     finally:
         await data_collector.close()
 
