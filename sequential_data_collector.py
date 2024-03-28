@@ -6,7 +6,7 @@ import logging
 import json
 import pytz
 
-class DataCollector:
+class SequentialDataCollector:
     def __init__(self, base_url, resources_path):
         self.base_url = base_url
         self.resource_path = resources_path

@@ -1,9 +1,8 @@
 from dotenv import load_dotenv
-from sequence_data_collector import DataCollector
-from sequence_database_manager import DatabaseManager
+from sequential_data_collector import SequentialDataCollector
+from sequential_database_manager import SequentialDatabaseManager
 import os
 import time
-import logging
 import json
 
 
@@ -12,15 +11,15 @@ def load_routes(file_path):
         return json.load(file)
 
 
-def seqeunce_main():
+def seqeuntial_main():
     load_dotenv(override=True)
     dsn = os.getenv('DB_URL')
-    database_manager = DatabaseManager(dsn)
-    
+
     base_url = "http://openapi.gbis.go.kr/ws/rest/buslocationservice?serviceKey=1234567890&routeId={}"
     resource_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources")
 
-    data_collector = DataCollector(base_url, resource_path)
+    database_manager = SequentialDatabaseManager(dsn)
+    data_collector = SequentialDataCollector(base_url, resource_path)
 
     while True:   
         start_collect_time = time.time()
