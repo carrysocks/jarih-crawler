@@ -7,6 +7,7 @@ import pytz
 import json
 import logging
 
+
 class AsyncDataCollector:
     def __init__(self, base_url, resources_path):
         self.base_url = base_url

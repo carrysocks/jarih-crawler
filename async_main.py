@@ -3,23 +3,21 @@ from dotenv import load_dotenv
 from async_data_collector import AsyncDataCollector
 from async_database_manager import AsyncDatabaseManager
 import os
-import logging
 import time
 
-async def main():
+
+async def async_main():
     load_dotenv(override=True)
     dsn = os.getenv('DB_URL')
     
-    database_manager = AsyncDatabaseManager(dsn)
     base_url = "http://openapi.gbis.go.kr/ws/rest/buslocationservice?serviceKey=1234567890&routeId={}"
     resource_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources")
 
+    database_manager = AsyncDatabaseManager(dsn)
     data_collector = AsyncDataCollector(base_url, resource_path)
     
     try:
-        
         await data_collector.open()
-        
         while True:   
             start_collect_time = time.time()
             buses = await data_collector.collect_data()
@@ -43,8 +41,3 @@ async def main():
     finally:
         await data_collector.close()
 
-if __name__ == "__main__":
-    try:
-        asyncio.run(main())
-    except Exception as e:
-        logging.error(f"Error in main: {e}")

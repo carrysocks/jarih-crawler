@@ -1,5 +1,6 @@
 import asyncpg
 
+
 class AsyncDatabaseManager:
     def __init__(self, dsn):
         self.dsn = dsn
