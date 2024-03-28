@@ -1,3 +1,4 @@
+import argparse
 import asyncio
 import logging
 
@@ -12,7 +13,7 @@ def main(mode):
         seqeuntial_main()
     elif mode == "async":
         asyncio.run(async_main())
-    elif mode == "threads":
+    elif mode == "threading":
         threads_main()
     else:
         raise ValueError("Invalid mode")
@@ -20,8 +21,14 @@ def main(mode):
 
 if __name__ == "__main__":
     try:
-        modes = ["sequential", "async", "threads"]
-        mode = modes[2]
+        parser = argparse.ArgumentParser(description="Bus_data Crawler")
+        parser.add_argument("--mode", type=str, default="threading", help="Execution mode (sequential, async, threading)")
+        args = parser.parse_args()
+
+        mode = args.mode.lower()
+        if mode not in ["sequential", "async", "threading"]:
+            raise ValueError("Invalid mode. Choose from: sequential, async, threading")
+
         main(mode)
     except Exception as e:
         logging.error(f"Error in main: {e}")

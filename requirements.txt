@@ -7,3 +7,4 @@ pytz==2024.1
 requests==2.31.0
 urllib3==2.2.1
 xmljson==0.2.1
+argparse
