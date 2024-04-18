@@ -45,7 +45,8 @@ pip install -r requirements.txt
 `.env.example`을 `.env`로 변경하고 데이터베이스 연결 세부 정보를 입력하세요.
 
 ```bash
-cp .env_example .env
+mv .env_example .env
+source .env
 ```
 
 5. **데이터베이스 초기화**
