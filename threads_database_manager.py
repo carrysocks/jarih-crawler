@@ -22,9 +22,7 @@ class ThreadsDatabaseManager:
 
     def save_data(self, buses):
         try:
-            print("save1")
             self.connect()
-            print("save2")
             insert_query = """
                         INSERT INTO bus_data (
                             time, plate_no, plate_type, route_id, route_name,

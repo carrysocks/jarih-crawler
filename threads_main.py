@@ -43,9 +43,3 @@ def threads_main():
         )
         print("Sleeping...")
         time.sleep(60)
-
-# if __name__ == "__main__":
-#     try:
-#         seqeunce_main()
-#     except Exception as e:
-#         logging.error(f"Error in main: {e}")
